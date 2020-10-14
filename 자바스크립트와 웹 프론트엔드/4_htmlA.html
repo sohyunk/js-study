@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form
+            method="GET" action="4_htmlB.html" id="form1"
+            onsubmit="console.log('from tag'); return false;">
+
+            이름 : <input type="text" name="id"><br>
+            메세지 : <input type="text" name="msg"><br>
+            <input type="submit">
+        </form>
+        <script>
+            // 이 이벤트 핸들러로 덮어씌워짐
+            var t = document.getElementById("form1");
+            t.onsubmit = function a() {
+                console.log("from property");
+                return false;
+            }
+
+            function b() {
+                console.log("from addEventListener");
+                return false;
+            }
+            function c() {
+                console.log("from addEventListener-2");
+                return false;
+            }
+            t.addEventListener("submit", b);    // 다른 이벤트 핸들러 덮어씌우는게 아니라 여러개 추가 가능
+            t.addEventListener("submit", c); 
+
+            t.removeEventListener("submit", b);
+        </script>
+    </body>
+</html>
